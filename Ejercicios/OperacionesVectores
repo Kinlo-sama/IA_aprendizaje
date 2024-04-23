@@ -1,0 +1,20 @@
+clear 
+close all
+clc
+q = randi(20,1,4)
+entrenamiento = randi(20,10,4)
+%% ejemplo 1
+distancias = [];
+for i = 1:size(entrenamiento,1)
+    z_q_entr_i =q-entrenamiento(i,:);
+    dista = (z_q_entr_i*z_q_entr_i')^(1/2);
+    distancias = [distancias;dista];
+end
+distancias
+%% ejemplo 2
+Q =repmat(q,size(entrenamiento,1),1)
+Z = Q-entrenamiento
+S_con_basurita = Z*Z';
+distancias_S = (diag(S_con_basurita)).^(1/2)
+%% ejemplo 3
+S_funcion = dist(entrenamiento,q')
